@@ -1,9 +1,7 @@
-from flask import Flask
+# import flask here
 
-app = Flask(__name__)
+# create new Flask App here
 
-app.run(debug=True)
+# define routes for your new flask app
 
-# @app.route('/')
-# def index():
-#     return "Hello, World!"
+# tell your flask app to run with debug mode on
