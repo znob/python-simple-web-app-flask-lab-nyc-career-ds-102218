@@ -1,84 +1,80 @@
 
 # Python - Getting Started with Flask
 
-pip install Flask
-open "helloworld.py"
-import Flask
-instantiate a new instance of Flask 
-use your new instance of flask and add an index route ('/')
-below your route, define a method that returns a string
-explain that when the browser sends an HTTP request to our application for the (/) route, it will run the function and send a response back with whatever the function is returning
-
-
 ## Introduction
 In this lab we are going to practice making a very simple web application. To do this, we will be using a framework called Flask, which allows us to create an application that communicates with our browser. We will define a route, and have it return a string "Hello world". Finally, we will start a local server and visit the route in our browser, which will make a request to our program, which should then return our "Hello world" string. Don't worry if that sounds a bit confusing. It will become a lot clearer shortly. Let's get started!
 
 ## Objectives
-* One
-* Two
+* Install the microframework flask
+* Create a new flask app
+* Spin up a server to run our flask app
+* Define routes that return text
 
-### Guest
-**Class Methods:**
-* `Guest.all()` returns a list of all guest instances
-* `Guest.most_popular()` returns the guest invited to the most dinner parties
-* `Guest.toughest_critic()` returns the guest with lowest average rating for recipe reviews
-* `Guest.most_active_critic()` returns the guest with most amount of recipe reviews
+## Getting Started
+Okay, first thing we need to get started is make sure we have Flask installed on our local computer. So, let's install flask. 
 
-**Instance Methods:**
-* `guest.rsvp(invite, rsvp_status)` takes in a boolean value (True or False) and updates a guest's rsvp status. It should return the rsvp_status status
-* `guest.number_of_invites()` returns the number of dinner party invites a guest has recieved 
-* `guest.review_recipe(recipe, rating, comment)` adds a guest's review with a rating and comment to a recipe. Returns the given recipe's reviews
-* `guest.favorite_recipe()` returns the given guest's favorite recipe
+We can install flask by simpling uncommenting out the line below and running the cell:
 
-### Invite
-**Class Methods:**
-* `Invite.all()` returns a list of all invite instances
 
-**Instance Methods:**
-* `invite.accepted` returns a boolean value (true or false) for whether the the guest accepted the invite or not
-* `invite.guest` returns the given invite's guest instance
-* `invite.dinner_party` returns the given invite's dinner party instance
+```python
+# pip install flask`
+```
 
-### DinnerParty
-**Class Methods:**
-* `DinnerParty.all()` returns a list of all dinner party instances
+Once flask is installed we can move on to getting our app up and running.
 
-**Instance Methods:**
-* `dinner_party.reviews()` returns a list of reviews for the recipes of a given dinner party
-* `dinner_party.recipes()` returns a list of recipes for the given dinner party
-* `dinner_party.recipe_count()` returns the number of recipes for the given dinner party
-* `dinner_party.highest_rated_recipe()` returns the highest rated recipe for the given dinner party
-* `dinner_party.number_of_attendees()` returns the number of guests who accepted their invite for the dinner party
+## Creating a New Flask App
+Next we are going to be using our file called `hello_world.py`. We will need to import flask like so:
+```python
+from flask import Flask
+```
+Then we need to define a variable, let's call it `app`. Assing `app` to a new instance of Flask with `__name__` as its argument (i.e. `Flask(__name__)`.
 
-### Course
-**Class Methods:**
-* `Course.all()` returns a list of all course instances
+Great! now we have the beginnings of our flask app set up. Our variable `app` represents a Flask object which we can use to continue building our app.
 
-**Instance Methods:**
-* `course.dinner_party` returns the dinner party instance for the given course
-* `course.recipe` returns the recpipe instance for the given course
+## Running Our App
 
-### Review
-**Class Methods:**
-* `Review.all()` returns a list of all invite instances
+Alright, our app doesn't do much of anything yet but we did just say that we created a new Flask object and this is a Flask app after all. Let's run it!
 
-**Instance Methods:**
-* `review.rating` returns the given review's rating
-* `review.recipe` returns the given review's recipe
-* `review.reviewer` returns the given review's reviewer (guest instance)
-* `review.comment` returns the given review's comment, if there is one
+To start a flask app we need to tell it to run. So, below where we have our `app` variable defined, let's tell our app to run. And since we want to know of any errors we encounter, let's tell our `app` to show any errors we encounter with `debug=True`.
 
-### Recipe
-**Class Methods:**
-* `Recipe.all()` returns a list of all invite instances
-* `Recipe.top_three()` returns a list with the three recipe instances with the highest average rating
-* `Recipe.bottom_three()` returns a list with the three recipe instances with the lowest average rating
+```python
+app.run(debug=True)
+```
 
-**Instance Methods:**
-* `recipe.reviews()` returns a list of reviews for the given recipe
-* `recipe.top_five_reviews()` returns a list with the five review instances with the highest rating for the given recipe
+Awesome, now we just need to run our `hellow_world.py` file with `python hello_world.py` and our app will start a server that is running on our computer. To see our app running, visit `http://127.0.0.1:5000/` in your browser. Alternatively we can type `localhost:5000` into our url to see our app running. 
+
+Once you get your server up you should see this displayed:
+
+![](not_found_flask.png)
+
+**Oh no!**
+![404_gif](not_found_404_.gif)
+
+Alright, unfortunately we haven't yet told our app what to do when someone visits it. Our 404 message even tells us that our server couldn't find the URL we requeste (i.e. `'/'`). So, we need to tell our app how to handle a request from a server or client. How do we do that? With routes, of course! Let's get some routes defined.
+
+
+
+## Defining Some Routes
+
+Alright, we have the beginning of our app set up and a server running, but we want to tell our app what to do when a request is made. The first route we will need is the index (`'/'`), so, let's define a route and a function to return some text when a client requests the index route.
+
+> **remember:** *we need to use a deocorator to attach or wrap the function below our route definition together with our route.*
+
+```python
+@app.route('/')
+def index
+    return "Hello, world!"
+    
+```
+
+Woo! now when someone visits the root route or index of our app, they see the text `"Hello, world!"`. 
+
+Let's take this a step further and define a few more routes. 
+
+* Define a route for `'/home'` which shows the text `"Welcome to an amazing Flask App!"`
+* Define a route for `'/myprofile'` which shows the text `"This is my profile! It's not finished yet... :/"`
+* Define a route for `'/exit'` which shows the text `"Thanks for looking around. Come back again soon!"`
 
 ## Summary
 
-
-Great work! In this lab we created a pretty complex domain model and defined some neat class and instance methods to leverage these has many through relationships. We could see that without these relationships, meaning without a review linking a recipe and a guest, it would become very difficult to organize our information and query it accurately like we do in a class method that gives us the top or bottom three recipes. 
+Great work! In this lab we installed the microframework flask and used it to create a simple web app! We created a new flask app and started our server. Then after seeing that our server didn't know how to handle a request to the index route, we defined a few routes and had them return some text when a client requests the route. This isn't terribly complex, but our apps will be able to do much more once we learn more about flask and the web.
