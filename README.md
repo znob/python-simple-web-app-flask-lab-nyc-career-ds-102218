@@ -38,7 +38,9 @@ Alright, our app doesn't do much of anything yet but we did just say that we cre
 To start a Flask app we need to tell it to run. So, below where we have our `app` variable defined, let's tell our app to run. And since we want to know of any errors we encounter, let's tell our `app` to show any errors we encounter with `debug=True`.
 
 ```python
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
+
 ```
 
 Awesome, now we just need to run our `hellow_world.py` file with `python hello_world.py` and our app will start a server that is running on our computer. To see our app running, visit `http://127.0.0.1:5000/` in your browser. Alternatively we can type `localhost:5000` into our url to see our app running. 
