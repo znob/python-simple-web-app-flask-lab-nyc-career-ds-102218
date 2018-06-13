@@ -22,4 +22,5 @@ def exit():
     return  "Thanks for looking around. Come back again soon!"
 
 # tell your flask app to run with debug mode on
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
